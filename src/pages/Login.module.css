@@ -1,0 +1,163 @@
+.loginContainer {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color: var(--bg-primary);
+}
+
+.imageSection {
+    flex: 1;
+    position: relative;
+    display: none;
+}
+
+@media (min-width: 900px) {
+    .imageSection {
+        display: block;
+    }
+}
+
+.bgImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.1), rgba(250, 248, 245, 1));
+}
+
+.formSection {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background-color: var(--bg-primary);
+    z-index: 10;
+}
+
+.formWrapper {
+    width: 100%;
+    max-width: 420px;
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.loginLogo {
+    height: 70px;
+    margin-bottom: 16px;
+    object-fit: contain;
+    border-radius: 50%;
+    box-shadow: var(--shadow-sm);
+}
+
+.sparkleIcon {
+    color: var(--primary-color);
+    margin-bottom: 16px;
+}
+
+.brandTitle {
+    font-size: 3.5rem;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.inputGroup label {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+
+.input {
+    padding: 16px;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: var(--bg-secondary);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(221, 167, 165, 0.15);
+    outline: none;
+}
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.forgot {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.forgot:hover {
+    text-decoration: underline;
+}
+
+.submitBtn {
+    margin-top: 8px;
+    padding: 16px;
+    background-color: var(--text-primary);
+    color: white;
+    border-radius: var(--radius-sm);
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.submitBtn:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.error {
+    padding: 12px;
+    background-color: #fee2e2;
+    color: #ef4444;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    text-align: center;
+}

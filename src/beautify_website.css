@@ -1,0 +1,227 @@
+/* Existing Code from previous module */
+.emptyCart {
+    text-align: center;
+    padding: 80px 20px;
+    background: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    animation: fadeIn 0.6s ease forwards;
+}
+
+.emptyCart h2 {
+    margin-bottom: 16px;
+    color: var(--text-primary);
+}
+
+.emptyCart p {
+    color: var(--text-secondary);
+}
+
+.cartContainer {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+}
+
+@media (max-width: 900px) {
+    .cartContainer {
+        grid-template-columns: 1fr;
+    }
+}
+
+.itemsSection {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.cartItem {
+    display: flex;
+    align-items: center;
+    padding: 24px;
+    background: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    gap: 24px;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cartItem:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.itemImage {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+}
+
+.itemDetails {
+    flex-grow: 1;
+}
+
+.itemDetails h3 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+}
+
+.price {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.quantity {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.removeBtn {
+    background: none;
+    border: none;
+    color: #ef4444;
+    padding: 12px;
+    opacity: 0.6;
+    transition: all 0.2s ease;
+}
+
+.removeBtn:hover {
+    opacity: 1;
+    background: #fee2e2;
+    border-radius: 50%;
+    transform: scale(1.1);
+}
+
+.summarySection {
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+}
+
+.summaryCard {
+    background: white;
+    padding: 32px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.summaryCard h3 {
+    font-size: 1.5rem;
+    margin-bottom: 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding-bottom: 16px;
+}
+
+.summaryRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+}
+
+.shippingNotice {
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    background-color: var(--bg-accent);
+    padding: 12px;
+    border-radius: var(--radius-sm);
+    margin: 16px 0;
+    text-align: center;
+    font-weight: 500;
+}
+
+.totalRow {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px dashed rgba(0, 0, 0, 0.1);
+    color: var(--text-primary);
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.checkoutBtn {
+    width: 100%;
+    margin-top: 32px;
+    padding: 18px;
+    font-size: 1.1rem;
+}
+
+/* Confirmation Success Styling */
+.confirmationCard {
+    background: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    padding: 60px 40px;
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    animation: scaleUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes scaleUp {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.checkIcon {
+    margin-bottom: 24px;
+    animation: popIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.confirmTitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+.confirmSubtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+    line-height: 1.6;
+}
+
+.orderInfo {
+    background-color: var(--bg-primary);
+    padding: 24px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 1.05rem;
+}
+
+.continueShoppingBtn {
+    display: inline-block;
+    padding: 16px 40px;
+}

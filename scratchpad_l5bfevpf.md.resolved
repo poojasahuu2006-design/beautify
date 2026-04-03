@@ -1,0 +1,10 @@
+# Beautify Website Test Log
+
+- [x] Open `http://localhost:5173`
+- [x] Login with `test@example.com` / `pass123`
+- [x] Evaluate visual aesthetics (premium, warm off-white/rose gold)
+- [x] Click 'Heart' icon on the first product card
+- [x] Click 'Add to Cart' button for the same product
+- [x] Navigate to Wishlist and verify item
+- [x] Navigate to Cart and verify item/quantity
+- [x] Report results to user

@@ -1,0 +1,153 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
+.navContainer {
+    max-width: 1400px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.logo a {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+}
+
+.brandLogo {
+    height: 60px;
+    object-fit: contain;
+    margin-left: -10px;
+    margin-right: 8px;
+    /* Slight optical adjustment to left */
+}
+
+.brandName {
+    font-size: 1.8rem;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+.navLinks {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.navLinks a {
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.navLinks a:hover,
+.navLinks a.active {
+    color: var(--text-primary);
+}
+
+.iconWrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.iconLabel {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.badge {
+    position: absolute;
+    top: -6px;
+    right: -2px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(221, 167, 165, 0.4);
+    z-index: 2;
+}
+
+.logoutBtn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+}
+
+.logoutBtn:hover {
+    color: var(--text-primary);
+    transform: scale(1.05);
+}
+
+.searchContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
+    padding: 0.4rem 1rem;
+    width: 280px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 0 20px;
+}
+
+.searchContainer:focus-within {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-color: var(--primary-color);
+}
+
+.searchIcon {
+    color: var(--text-secondary);
+    margin-right: 8px;
+}
+
+.searchInput {
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+.searchInput::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+@media (max-width: 900px) {
+    .searchContainer {
+        display: none;
+    }
+}
