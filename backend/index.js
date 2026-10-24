@@ -11,22 +11,61 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Connect to Local MongoDB
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('✅ MongoDB successfully connected! (Database created instantly)'))
-  .catch((err) => console.log('❌ MongoDB connection error:', err));
+// Connect to MongoDB Atlas
+let mongoUri = process.env.MONGO_URI || "mongodb+srv://poojasahuu2006_db_user:rpZBqIXLiIfqJSG3@cluster0.kpjsxdz.mongodb.net/beautifyDB?retryWrites=true&w=majority";
+mongoUri = mongoUri.trim().replace(/^["']|["']$/g, '').trim();
 
-// Middleware
-// cors() allows the React frontend on localhost:5173 to speak to this server on localhost:5000
-app.use(cors()); 
+mongoose.connect(mongoUri)
+  .then(() => console.log('✅ MongoDB successfully connected to Beautify Database!'))
+  .catch((err) => console.error('❌ MongoDB connection error:', err.message));
+
+// Permissive and flexible CORS configuration
+const allowedOrigins = [
+    'http://localhost:5173',
+    'http://localhost:3000',
+    'https://beautifybrand.netlify.app',
+    'https://beautify-brand.netlify.app'
+];
+
+app.use(cors({
+    origin: function (origin, callback) {
+        if (!origin) return callback(null, true);
+        if (
+            allowedOrigins.indexOf(origin) !== -1 ||
+            origin.endsWith('.onrender.com') ||
+            origin.endsWith('.netlify.app') ||
+            origin.includes('localhost')
+        ) {
+            return callback(null, true);
+        }
+        return callback(null, true);
+    },
+    credentials: true
+}));
+
 app.use(express.json());
 
-// Basic Home Route (To verify server is running)
-app.get('/', (req, res) => {
-    res.send("Hello Pooja! Your Beautify Backend Server is running successfully.");
+// Health Check for Render
+app.get('/health', (req, res) => {
+    res.status(200).json({
+        status: 'ok',
+        service: 'Beautify Full-Stack Backend API',
+        uptime: process.uptime(),
+        timestamp: new Date().toISOString()
+    });
 });
 
-// A basic API endpoint
+// Basic Home Route
+app.get('/', (req, res) => {
+    res.json({
+        status: "success",
+        name: "Beautify Backend API",
+        health: "/health",
+        message: "Your Beautify Backend Server is running successfully."
+    });
+});
+
+// Status API
 app.get('/api/status', (req, res) => {
     res.json({ 
         success: true, 
@@ -34,59 +73,71 @@ app.get('/api/status', (req, res) => {
     });
 });
 
-// 👉 1. SIGNUP API (Naya Account Banane Ke Liye)
+// 1. SIGNUP API
 app.post('/api/signup', async (req, res) => {
     try {
         const { name, email, password } = req.body;
         
-        // Check if user already exists
-        const existingUser = await User.findOne({ email });
+        if (!name || !email || !password) {
+            return res.status(400).json({ success: false, message: "Name, email, and password are required!" });
+        }
+
+        const existingUser = await User.findOne({ email: email.toLowerCase().trim() });
         if (existingUser) return res.status(400).json({ success: false, message: "This email is already registered!" });
 
-        // Password encryption
         const hashedPassword = await bcrypt.hash(password, 10);
         
-        // Save new user
-        const newUser = new User({ name, email, password: hashedPassword });
+        const newUser = new User({ 
+            name: name.trim(), 
+            email: email.toLowerCase().trim(), 
+            password: hashedPassword 
+        });
         await newUser.save();
 
-        res.json({ success: true, message: "Your account was created successfully!" });
+        res.status(201).json({ success: true, message: "Your account was created successfully!" });
     } catch (error) {
         console.error("Signup Error:", error);
         res.status(500).json({ success: false, message: "A server error occurred during signup." });
     }
 });
 
-// 👉 2. LOGIN API (Log In Karne Ke Liye)
+// 2. LOGIN API
 app.post('/api/login', async (req, res) => {
     try {
         const { email, password } = req.body;
         
-        const user = await User.findOne({ email });
+        if (!email || !password) {
+            return res.status(400).json({ success: false, message: "Email and password are required!" });
+        }
+
+        const user = await User.findOne({ email: email.toLowerCase().trim() });
         if (!user) return res.status(404).json({ success: false, message: "Incorrect email. Account not found." });
 
-        // Check password matching
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) return res.status(400).json({ success: false, message: "Incorrect password." });
 
-        res.json({ success: true, message: `Welcome back, ${user.name}!`, user: { name: user.name, email: user.email } });
+        res.json({ 
+            success: true, 
+            message: `Welcome back, ${user.name}!`, 
+            user: { name: user.name, email: user.email } 
+        });
     } catch (error) {
         console.error("Login Error:", error);
         res.status(500).json({ success: false, message: "A server error occurred during login." });
     }
 });
 
-// 👉 3. DEKHNE KE LIYE API (Test karne ke liye ki data ka udhar kaisa dikhta hai)
+// 3. GET USERS API
 app.get('/api/users', async (req, res) => {
     try {
-        const allUsers = await User.find({});
+        const allUsers = await User.find({}, '-password');
         res.json(allUsers);
     } catch (error) {
         res.status(500).json({ message: "Error fetching users" });
     }
 });
 
-// Start the server listening for requests
-app.listen(PORT, () => {
-    console.log(`> Backend Server is blazing fast and running on http://localhost:${PORT}`);
+// Start server on 0.0.0.0
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`> Backend Server is running on port ${PORT}`);
 });
