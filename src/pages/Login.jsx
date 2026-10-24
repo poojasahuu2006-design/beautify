@@ -28,8 +28,17 @@ const Login = () => {
         const payload = isLogin ? { email, password } : { name, email, password };
 
         try {
-            // Live backend se connected!
-            const res = await fetch(`${import.meta.env.VITE_API_URL ? (import.meta.env.VITE_API_URL.startsWith("http") ? import.meta.env.VITE_API_URL : `https://${import.meta.env.VITE_API_URL}`) : "https://beautify-backend.onrender.com"}${endpoint}`, {
+            // Live backend se connected! Ensure full public URL
+            let apiBase = (import.meta.env.VITE_API_URL || "https://beautify-backend-yuto.onrender.com").trim();
+            if (!apiBase.startsWith("http://") && !apiBase.startsWith("https://")) {
+                apiBase = "https://" + apiBase;
+            }
+            if (!apiBase.includes(".")) {
+                apiBase = apiBase + ".onrender.com";
+            }
+            apiBase = apiBase.replace(/\/+$/, "");
+
+            const res = await fetch(`${apiBase}${endpoint}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)

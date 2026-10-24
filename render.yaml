@@ -29,7 +29,4 @@ services:
         destination: /index.html
     envVars:
       - key: VITE_API_URL
-        fromService:
-          type: web
-          name: beautify-backend
-          property: host
+        value: https://beautify-backend-yuto.onrender.com
