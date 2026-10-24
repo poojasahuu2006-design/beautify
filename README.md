@@ -1,8 +1,8 @@
 # 💄 Beautify — Full-Stack E-Commerce & Luxury Boutique Web Application
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Render_Frontend-ff69b4?style=for-the-badge&logo=render)](https://beautify-frontend-7bq9.onrender.com/login)
 [![Live Backend](https://img.shields.io/badge/Live_API-Render_Cloud-brightgreen?style=for-the-badge&logo=render)](https://beautify-backend-yuto.onrender.com)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/poojasahuu2006-design/beautify)
-[![Frontend](https://img.shields.io/badge/Frontend-React_18_&_Vite-61DAFB?style=for-the-badge&logo=react)](https://beautifybrand.netlify.app/)
 [![Backend](https://img.shields.io/badge/Backend-Node.js_&_Express_5-339933?style=for-the-badge&logo=node.js)](https://nodejs.org)
 [![Database](https://img.shields.io/badge/Database-MongoDB_Atlas-47A248?style=for-the-badge&logo=mongodb)](https://www.mongodb.com/atlas)
 
@@ -14,9 +14,10 @@ A full-stack, responsive luxury cosmetic boutique and e-commerce application bui
 
 | Resource | URL | Status |
 |---|---|---|
+| 🛍️ **Live Demo (Render Frontend)** | [https://beautify-frontend-7bq9.onrender.com/login](https://beautify-frontend-7bq9.onrender.com/login) | ![Online](https://img.shields.io/badge/Status-Online-brightgreen) |
 | 🚀 **Live Backend API** | [https://beautify-backend-yuto.onrender.com](https://beautify-backend-yuto.onrender.com) | ![Online](https://img.shields.io/badge/Status-Online-brightgreen) |
 | 🩺 **System Health Check** | [https://beautify-backend-yuto.onrender.com/health](https://beautify-backend-yuto.onrender.com/health) | ![Healthy](https://img.shields.io/badge/Health-200_OK-brightgreen) |
-| 🛍️ **Live Storefront (Frontend)** | [https://beautifybrand.netlify.app](https://beautifybrand.netlify.app) | ![Online](https://img.shields.io/badge/Status-Online-brightgreen) |
+| 🌐 **Alternative Frontend (Netlify)** | [https://beautifybrand.netlify.app](https://beautifybrand.netlify.app) | ![Online](https://img.shields.io/badge/Status-Online-brightgreen) |
 
 ---
 
