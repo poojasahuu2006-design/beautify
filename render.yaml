@@ -17,12 +17,11 @@ services:
       - key: MONGO_URI
         sync: false
 
-  # Frontend Static Site
+  # Frontend Static Site (Globally served via Render CDN - no region needed)
   - type: web
     name: beautify-frontend
     env: static
     plan: free
-    region: singapore
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
     routes:
